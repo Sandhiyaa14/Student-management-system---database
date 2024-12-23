@@ -29,7 +29,7 @@ Q3: List All Instructors
 Query: Retrieve all instructor details.
 
 Q4: List All Courses
-Query: Retrieve all course details along with the instructor name.
+Query: Retrieve all course details along with the instructor id.
 
 Q5: List All Enrollments
 Query: Retrieve all student enrollments in courses.
