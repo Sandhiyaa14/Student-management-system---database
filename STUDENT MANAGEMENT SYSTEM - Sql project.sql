@@ -155,16 +155,17 @@ where g.grade = "A");
 
 -- Create a stored procedure that retrieves all the students who are enrolled in a course taught by a specific instructor.
 delimiter $$
-create procedure getcourse()
+create procedure getcourse(instructor_name_param varchar(50))
 begin
-select s.first_name, s.last_name, c.course_name, i.instructor_name
-from students as s
-join enrollments as e on e.student_id = s.student_id
-join courses as c on c.course_id = e.course_id
-join instructors as i on i.instructor_id = c.instructor_id  ;
+    select s.first_name, s.last_name, c.course_name, i.instructor_name
+    from students as s
+    join enrollments as e on e.student_id = s.student_id
+    join courses as c on c.course_id = e.course_id
+    join instructors as i on i.instructor_id = c.instructor_id
+    where i.instructor_name = instructor_name_param;
 end $$
 delimiter ;
-call getcourse();
+call getcourse('Babu');
 
 
 -- number of students enrolled in each course
@@ -178,9 +179,9 @@ join courses as c on c.course_id = e.course_id
 group by c.course_name;
 end $$
 delimiter ;
-
-call student_in_each_course();
 drop procedure if exists student_in_each_course;
+call student_in_each_course();
+
 
 -- altering
 alter table students add column ph_no int;
